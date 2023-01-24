@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/WEB-INF/template/template.xhtml">
+<ui:define name="title">Add Student result</ui:define>
+
+	<ui:define name="content">
+		<h:form>
+			<p:growl>
+				<p:autoUpdate />
+			</p:growl>
+			<p:panelGrid columns="2">
+				<f:facet name="header">
+					<h:outputText value="#{msg.lbl_add_student_result}" />
+				</f:facet>
+				
+					<p:outputLabel value="#{msg.lbl_English_name}" for="student" />
+				<p:selectOneMenu id="student" value="#{mbaddstre.student_result.student.STUDENT_ID}" required="true" requiredMessage="plase select student name">
+					<f:selectItem itemLabel="#{msg.lbl_select_one} " itemValue=" " />
+					<f:selectItems value="#{mbaddstre.studentTable}" var="res" itemLabel="#{res.STUDENT_ENAME}" itemValue="#{res.STUDENT_ID}" />
+				</p:selectOneMenu>
+				
+					<p:outputLabel value="#{msg.lbl_Training_Course_english_name}" for="course" />
+				<p:selectOneMenu id="course" value="#{mbaddstre.student_result.trainingCourse.COURSE_ID}" required="true" requiredMessage="plase select course name">
+					<f:selectItem itemLabel="#{msg.lbl_select_one}" itemValue=" " />
+					<f:selectItems value="#{mbaddstc.traingcourseTable}" var="cor" itemLabel="#{cor.COURSE_ENAME}" itemValue="#{cor.COURSE_ID}" />
+				</p:selectOneMenu>
+				
+				<p:outputLabel value="#{msg.lbl_English_mark}" for="emark" />
+				<p:inputNumber id="emark" value="#{mbaddstre.student_result.english_mark}" required="true" requiredMessage="plase add english mark" />
+
+				<p:outputLabel value="#{msg.lbl_interview_mark}" for="Imark" />
+				<p:inputNumber id="Imark" value="#{mbaddstre.student_result.interview_mark}" required="true" requiredMessage="plase add interview mark" />
+
+				<p:outputLabel value="Accepted  flag" for="flag" />
+				<p:inputNumber id="flag" value="#{mbaddstre.student_result.ACCEPTRD_FLAG}" required="true" requiredMessage="plase add accepted flag" />
+
+				<p:outputLabel value="#{msg.lbl_note}" for="notes" />
+				<p:inputTextarea id="notes" value="#{mbaddstre.student_result.notes}" cols="20" rows="3" autoResize="true" counter="display" maxlength="20"
+					counterTemplate="{0} characters remaining" />
+				<h:outputText id="display" />
+
+				<f:facet name="footer">
+					<p:commandButton value="#{msg.btn_save}" action="#{mbaddstre.save()}" ajax="false" />
+				</f:facet>
+
+
+
+
+
+
+			</p:panelGrid>
+
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

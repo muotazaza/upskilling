@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/WEB-INF/template/template.xhtml">
+<ui:define name="title">Training Course</ui:define>
+
+	<ui:define name="content">
+		<h:form id="mainform">
+			<p:panel>
+				<p:dataTable var="tra" value="#{mbtra.trainingCoursesTable}">
+					<f:facet name="header">
+						<h:outputText value="#{msg.lbl_training_course}" />
+					</f:facet>
+
+					<p:column headerText="#{msg.lbl_course_id}" sortBy="#{tra.COURSE_ID}">
+						<h:outputText value="#{tra.COURSE_ID}" />
+					</p:column>
+					<p:column headerText="#{msg.lbl_Training_Course_arabic_name}" sortBy="#{tra.COURSE_ANAME}">
+						<h:outputText value="#{tra.COURSE_ANAME}" />
+					</p:column>
+					<p:column headerText="#{msg.lbl_Training_Course_english_name}" sortBy="#{tra.COURSE_ENAME}">
+						<h:outputText value="#{tra.COURSE_ENAME}" />
+					</p:column>
+					<p:column headerText="#{msg.lbl_max_students}" sortBy="#{tra.MAX_STUDENTS}">
+						<h:outputText value="#{tra.MAX_STUDENTS}" />
+					</p:column>
+					<p:column headerText="#{msg.lbl_short_desc}" sortBy="#{tra.SHORT_DESC}">
+						<h:outputText value="#{tra.SHORT_DESC}" />
+					</p:column>
+					<p:column headerText="#{msg.lbl_detailed_desc}" sortBy="#{tra.DETAILED_DESC}">
+						<h:outputText value="#{tra.DETAILED_DESC}" />
+
+					</p:column>
+					<p:column headerText="#{msg.lbl_remove}">
+						<p:commandButton value="X" action="#{mbtra.removetrainingcourse()}" ajax="false">
+							<f:setPropertyActionListener value="#{tra}" target="#{mbtra.selectTrainingCourse}" />
+						</p:commandButton>
+					</p:column>
+
+					<p:column headerText="#{msg.lbl_update}">
+						<p:commandButton value="#{msg.btn_edit_data}" update="mainform:editpnl" onclick="PF('trainingcourseDlg').show()">
+							<f:setPropertyActionListener value="#{tra}" target="#{mbtra.selectTrainingCourse}" />
+						</p:commandButton>
+					</p:column>
+				</p:dataTable>
+			</p:panel>
+			<p:dialog header="#{msg.lbl_edit_training_course}" widgetVar="trainingcourseDlg">
+				<p:panelGrid id="editpnl" columns="2">
+
+					<p:outputLabel value="#{msg.lbl_course_id}" />
+					<h:outputText value="#{mbtra.selectTrainingCourse.COURSE_ID}" />
+
+					<p:outputLabel value="#{msg.lbl_Training_Course_arabic_name}" />
+					<p:inputText value="#{mbtra.selectTrainingCourse.COURSE_ANAME}" />
+
+					<p:outputLabel value="#{msg.lbl_Training_Course_english_name}" />
+					<p:inputText value="#{mbtra.selectTrainingCourse.COURSE_ENAME}" />
+
+					<p:outputLabel value="#{msg.lbl_max_students}" />
+					<p:inputNumber value="#{mbtra.selectTrainingCourse.MAX_STUDENTS}" padControl="false" />
+
+
+					<p:outputLabel value="#{msg.lbl_short_desc}" />
+					<h:outputText value="#{mbtra.selectTrainingCourse.SHORT_DESC}" />
+
+					<p:outputLabel value="#{msg.lbl_detailed_desc}" />
+					<h:outputText value="#{mbtra.selectTrainingCourse.DETAILED_DESC}" />
+
+					<f:facet name="footer">
+						<p:commandButton value="#{msg.btn_save}" action="#{mbuni.updateuniversity()}" ajax="false" />
+
+					</f:facet>
+
+				</p:panelGrid>
+
+
+			</p:dialog>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/WEB-INF/template/template.xhtml">
+	<ui:define name="title">Add program</ui:define>
+
+	<ui:define name="content">
+		<h:form>
+			<p:growl>
+				<p:autoUpdate />
+			</p:growl>
+			<p:panelGrid columns="2">
+				<f:facet name="header">
+					<h:outputText value="#{msg.lbl_add_progarm}" />
+				</f:facet>
+				<p:outputLabel value="#{msg.lbl_program_id}" for="PROGRAM_ID" />
+				<p:inputNumber id="PROGRAM_ID" value="#{mbaddpro.program.PROGRAM_ID}" decimalPlaces="0" decimalSeparator=" " thousandSeparator=" "
+					required="true" requiredMessage="#{msg.msg_required}-#{msg.lbl_program_id}" />
+
+				<p:outputLabel value="#{msg.lbl_program_arab_name}" for="PROGRAM_ANAME" />
+				<p:inputText id="PROGRAM_ANAME" value="#{mbaddpro.program.PROGRAM_ANAME}" required="true" requiredMessage="#{msg.msg_required}-#{msg.lbl_program_arab_name}"/>
+
+				<p:outputLabel value="#{msg.lbl_program_english_name}" for="PROGRAM_ENAME" />
+				<p:inputText id="PROGRAM_ENAME" value="#{mbaddpro.program.PROGRAM_ENAME}" required="true" requiredMessage="#{msg.msg_required}-#{msg.lbl_program_english_name}"/>
+
+				<p:outputLabel value="#{msg.lbl_school}" for="school" />
+				<p:selectOneMenu id="school" value="#{mbaddpro.program.school.school_Id}" required="true"
+					requiredMessage="#{msg.msg_required}- #{msg.lbl_school_English_name}">
+					<f:selectItem itemLabel="#{msg.lbl_select_one} " itemValue=" " />
+					<f:selectItems value="#{mbaddpro.schoolTable}" var="name" itemLabel="#{name.school_ename}" itemValue="#{name.school_Id}" />
+				</p:selectOneMenu>
+
+				<f:facet name="footer">
+
+					<p:commandButton value="#{msg.btn_save}" action="#{mbaddpro.save()}" ajax="false" />
+				</f:facet>
+			</p:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

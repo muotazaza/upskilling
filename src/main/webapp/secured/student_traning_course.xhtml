@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/WEB-INF/template/template.xhtml">
+	<ui:define name="title"> Student Tranining Course</ui:define>
+
+	<ui:define name="content">
+		<h:form id="mainform">
+			<p:panel>
+				<p:dataTable var="stc" value="#{mbstc.student_Training_courseTable}">
+					<f:facet name="header">
+						<h:outputText value="#{msg.lbl_student_training_course}" />
+					</f:facet>
+
+					<p:column headerText="#{msg.lbl_English_name}">
+						<h:outputText value="#{stc.student.STUDENT_ENAME}" />
+					</p:column>
+
+					<p:column headerText="#{msg.lbl_Training_Course_english_name}">
+						<h:outputText value="#{stc.trainingCourse.COURSE_ENAME}" />
+					</p:column>
+
+					<p:column headerText="#{msg.lbl_priority}">
+						<h:outputText value="#{stc.priority}" />
+					</p:column>
+
+					<p:column headerText="#{msg.lbl_remove}">
+						<p:commandButton value="X" action="#{mbstc.removeStudent_training_course()}" ajax="false">
+							<f:setPropertyActionListener value="#{stc}" target="#{mbstc.selectStudent_Training_course}" />
+						</p:commandButton>
+					</p:column>
+
+
+				</p:dataTable>
+
+
+			</p:panel>
+		</h:form>
+
+	</ui:define>
+</ui:composition>
+</html>

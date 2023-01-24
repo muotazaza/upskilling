@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="#{mbSec.lang}" xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui">
+<f:view locale="#{mbSec.locale}">
+	<h:head>
+		<title><ui:insert name="title">upskilling program </ui:insert></title>
+		<h:link rel="icon" type="image/png" hreflang="#{resource['icons/icon.png']}" />
+	</h:head>
+	<h:body dir="#{mbSec.dir}">
+	 	<h:outputStylesheet name="java.css" library="css" />
+		<p:panel id="pnl">
+
+			<ui:include src="/WEB-INF/include/header.xhtml" />
+			<!-- <f:facet name="header">
+				<h:graphicImage value="/resources/image/HTU Logo-250px.png" />
+			</f:facet> -->
+			<br />
+			<p:panel id="contentpnl" rendered="#{mbSec.login}" style="min-height:400px;">
+				<ui:include src="/WEB-INF/include/main-menu.xhtml" />
+
+				<br />
+				<br />
+				<ui:insert name="content">
+
+				</ui:insert>
+			</p:panel>
+
+			<p:panel id="loginpnl" rendered="#{!mbSec.login}" style="min-height:400px;">
+				<ui:include src="/WEB-INF/include/Login.xhtml" />
+			</p:panel>
+			<f:facet name="footer">
+
+				<p:outputLabel value="#{msg.lbl_copyright}" />
+
+			</f:facet>
+
+
+		</p:panel>
+	</h:body>
+</f:view>
+</html>

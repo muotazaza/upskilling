@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/WEB-INF/template/template.xhtml">
+<ui:define name="title">Student</ui:define>
+
+	<ui:define name="content">
+
+		<h:form id="mainform">
+			<p:panel>
+				<p:dataTable var="stud" value="#{mbstu.studentTablbe}">
+					<f:facet name="header">
+						<h:outputText value="#{msg.lbl_Student}" />
+					</f:facet>
+				
+					<p:column headerText="#{msg.lbl_student_id}" sortBy="#{stud.STUDENT_ID}" >
+						<h:outputText value="#{stud.STUDENT_ID}" />
+					</p:column>
+				
+					<p:column headerText="#{msg.lbl_arabic_name}" sortBy="#{stud.STUDENT_ANAME}">
+						<h:outputText value="#{stud.STUDENT_ANAME}" />
+					</p:column>
+				
+					<p:column headerText="#{msg.lbl_English_name}" sortBy="#{stud.STUDENT_ENAME}">
+						<h:outputText value="#{stud.STUDENT_ENAME}" />
+					</p:column>
+				
+					<p:column headerText="#{msg.lbl_mobile}">
+						<h:outputText value="#{stud.mobile}" />
+					</p:column>
+				
+					<p:column headerText="#{msg.lbl_birthdate}">
+						<h:outputText value="#{stud.birthdate}" />
+					</p:column>
+				
+					<p:column headerText="#{msg.lbl_sex}">
+						<h:outputText value="#{stud.sex}" />
+					</p:column>
+				
+					<p:column headerText="#{msg.lbl_email}">
+						<h:outputText value="#{stud.email}" />
+					</p:column>
+					
+					<p:column headerText="#{msg.lbl_university_ename}">
+						<h:outputText value="#{stud.university.eName}" />
+					</p:column>
+					
+					<p:column headerText="#{msg.lbl_school_English_name}">
+						<h:outputText value="#{stud.school.school_ename}" />
+					</p:column>
+					
+					<p:column headerText="#{msg.lbl_program_english_name}">
+						<h:outputText value="#{stud.program.PROGRAM_ENAME}" />
+					</p:column>
+					
+					<p:column headerText="#{msg.lbl_final_average}">
+						<h:outputText value="#{stud.FINAL_AVERAGE}" />
+					</p:column>
+
+					<p:column headerText="#{msg.lbl_rate}">
+						<h:outputText value="#{stud.rate}" />
+					</p:column>
+
+					<p:column headerText="#{msg.lbl_graduate_year}">
+						<h:outputText value="#{stud.GRADUATE_YEAR}" />
+					</p:column>
+					
+						<p:column headerText="#{msg.lbl_remove}">
+					<p:commandButton value="X" action="#{mbstu.remove()}" ajax="false">
+						<f:setPropertyActionListener value="#{stud}" target="#{mbstu.selectStudent}" />
+					</p:commandButton>
+				</p:column>
+					
+
+
+				</p:dataTable>
+
+			</p:panel>
+
+
+		</h:form>
+
+	</ui:define>
+</ui:composition>
+</html>

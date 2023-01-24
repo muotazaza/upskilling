@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/WEB-INF/template/template.xhtml">
+<ui:define name="title">Add Training Course</ui:define>
+
+	<ui:define name="content">
+		<h:form>
+			<p:growl>
+				<p:autoUpdate />
+			</p:growl>
+			<p:panelGrid columns="2">
+				<f:facet name="header">
+					<h:outputText value="#{msg.lbl_training_course}" />
+				</f:facet>
+				<p:outputLabel value="#{msg.lbl_course_id}" for="courseid" />
+				<p:inputNumber id="courseid" value="#{mbaddtra.trainingCourse.COURSE_ID}" padControl="false" required="true"
+					requiredMessage="#{msg.msg_required}-#{msg.lbl_course_id} " />
+
+				<p:outputLabel value="#{msg.lbl_Training_Course_arabic_name}" for="coursearabicname" />
+				<p:inputText id="coursearabicname" value="#{mbaddtra.trainingCourse.COURSE_ANAME}" required="true"
+					requiredMessage="#{msg.msg_required}-#{msg.lbl_Training_Course_arabic_name}" />
+
+				<p:outputLabel value="#{msg.lbl_Training_Course_english_name}" for="courseenglishname" />
+				<p:inputText id="courseenglishname" value="#{mbaddtra.trainingCourse.COURSE_ENAME}" required="true"
+					requiredMessage="#{msg.msg_required}-#{msg.lbl_Training_Course_english_name}" />
+
+				<p:outputLabel value="#{msg.lbl_max_students}" for="max" />
+				<p:inputNumber id="max" value="#{mbaddtra.trainingCourse.MAX_STUDENTS}" padControl="false" required="true"
+					requiredMessage="#{msg.msg_required}-#{msg.lbl_max_students} " />
+
+				<p:outputLabel value="#{msg.lbl_short_desc}" />
+				<p:inputTextarea value="#{mbaddtra.trainingCourse.SHORT_DESC}" cols="20" rows="3" autoResize="false" counter="display" maxlength="50"
+					counterTemplate="{0} characters remaining">
+					<h:outputText id="display" />
+				</p:inputTextarea>
+				<p:outputLabel value="#{msg.lbl_detailed_desc}" />
+				<p:inputTextarea value="#{mbaddtra.trainingCourse.DETAILED_DESC}" cols="20" rows="3" autoResize="false" counter="display"
+					maxlength="2000" counterTemplate="{0} characters remaining">
+					<h:outputText id="displayy" />
+				</p:inputTextarea>
+
+				<f:facet name="footer">
+					<p:commandButton value="#{msg.btn_save}" action="#{mbaddtra.save()}" ajax="false" />
+				</f:facet>
+			</p:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

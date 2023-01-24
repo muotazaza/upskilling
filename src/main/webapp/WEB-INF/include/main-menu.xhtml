@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:p="http://primefaces.org/ui"> 
+     
+     <ui:composition>
+      
+      <h:form id="menuForm">
+					<p:menubar>
+						<p:menuitem value="#{msg.menu_home}" outcome="/Home.xhtml"/>
+						<p:submenu label="#{msg.menu_Data_Table}">
+							<p:menuitem value="#{msg.lbl_university}" outcome="/secured/university.xhtml" />
+							<p:menuitem value="#{msg.lbl_program}" outcome="/secured/program.xhtml" />
+							<p:menuitem value="#{msg.lbl_school}" outcome="/secured/school.xhtml" />
+							<p:menuitem value="#{msg.lbl_Student}" outcome="/secured/student.xhtml" />
+							<p:menuitem value="#{msg.lbl_training_course}" outcome="/secured/trainingcourse.xhtml" />
+							<p:menuitem value="#{msg.lbl_student_training_course}" outcome="/secured/student_traning_course.xhtml" />
+							<p:menuitem value="#{msg.lbl_student_result}" outcome="/secured/student_result.xhtml" />
+						</p:submenu>
+						<p:submenu label="#{msg.menu_Add_To_Data_Table}">
+							<p:menuitem value=" #{msg.lbl_Add_University}" outcome="/secured/adduniversity.xhtml" />
+							<p:menuitem value="#{msg.lbl_add_progarm}" outcome="/secured/addprogram.xhtml" />
+							<p:menuitem value="#{msg.lbl_add_school}" outcome="/secured/addschool.xhtml" />
+							<p:menuitem value="#{msg.lbl_Add_student}" outcome="/secured/addstudent.xhtml" />
+							<p:menuitem value="#{msg.lbl_add_Training_Course}" outcome="/secured/addtrainingcourse" />
+							<p:menuitem value="#{msg.lbl_Add_Student_Training_Course}" outcome="/secured/addStudent_traininag_course" />
+							<p:menuitem value="#{msg.lbl_add_student_result}" outcome="/secured/addstudent_result.xhtml" />
+						</p:submenu>
+						
+						<p:menuitem value="#{msg.menu_logout}" action="#{mbSec.logout()}" ajax="false"/>
+						
+						
+					</p:menubar>
+				</h:form>
+
+</ui:composition>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/WEB-INF/template/template.xhtml">
+<ui:define name="title">Add student tranining course</ui:define>
+
+	<ui:define name="content">
+		<h:form>
+			<p:growl>
+				<p:autoUpdate />
+			</p:growl>
+			<p:panelGrid columns="2">
+				<f:facet name="header">
+					<h:outputText value="#{msg.lbl_Add_Student_Training_Course}" />
+				</f:facet>
+
+				<p:outputLabel value="#{msg.lbl_English_name}" for="student" />
+				<p:selectOneMenu id="student" value="#{mbaddstc.student_Training_course.student.STUDENT_ID}" required="true"
+					requiredMessage="#{msg.msg_required}-#{msg.lbl_English_name}">
+					<f:selectItem itemLabel="#{msg.lbl_select_one} " itemValue=" " />
+					<f:selectItems value="#{mbaddstc.studentTable}" var="st" itemLabel="#{st.STUDENT_ENAME}" itemValue="#{st.STUDENT_ID}" />
+				</p:selectOneMenu>
+
+				<p:outputLabel value="#{msg.lbl_Training_Course_english_name}" for="course" />
+				<p:selectOneMenu id="course" value="#{mbaddstc.student_Training_course.trainingCourse.COURSE_ID}" required="true"
+					requiredMessage="#{msg.msg_required}-#{msg.lbl_Training_Course_english_name}">
+					<f:selectItem itemLabel="#{msg.lbl_select_one}" itemValue=" " />
+					<f:selectItems value="#{mbaddstc.traingcourseTable}" var="tra" itemLabel="#{tra.COURSE_ENAME}" itemValue="#{tra.COURSE_ID}" />
+				</p:selectOneMenu>
+
+				<p:outputLabel value="#{msg.lbl_priority} " for="pri" />
+				<p:inputNumber id="pri" value="#{mbaddstc.student_Training_course.priority}" padControl="true" required="true"
+					requiredMessage="#{msg.msg_required}-#{msg.lbl_priority}" />
+
+				<f:facet name="footer">
+					<p:commandButton value="#{msg.btn_save}" action="#{mbaddstc.save()}" ajax="false" />
+				</f:facet>
+			</p:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/WEB-INF/template/template.xhtml">
+	<ui:define name="title">Add student</ui:define>
+
+	<ui:define name="content">
+		<h:form>
+			<p:growl>
+				<p:autoUpdate />
+			</p:growl>
+			<p:panelGrid columns="2">
+				<f:facet name="header">
+					<h:outputText value="#{msg.lbl_Add_student}" />
+				</f:facet>
+				<p:outputLabel value="#{msg.lbl_student_id}" for="ID" />
+				<p:inputNumber id="ID" value="#{mbaddstu.student.STUDENT_ID}" decimalPlaces=" " decimalSeparator=" " thousandSeparator=""
+					required="true" requiredMessage="plase add id for student " padControl="false" />
+
+				<p:outputLabel value="#{msg.lbl_arabic_name}" for="arabic" />
+				<p:inputText id="arabic" value="#{mbaddstu.student.STUDENT_ANAME}" required="ture " requiredMessage="plase add student arabic name  " />
+
+				<p:outputLabel value="#{msg.lbl_English_name}" for="english" />
+				<p:inputText id="english" value="#{mbaddstu.student.STUDENT_ENAME}" required="ture " requiredMessage="plase add student engilsh  name  " />
+
+				<p:outputLabel value="#{msg.lbl_mobile}" for="mobile" />
+				<p:inputText id="mobile" value="#{mbaddstu.student.mobile}" validatorMessage=" Invalid moblie format">
+					<f:validateRegex pattern="07[789][0-9]{7}"></f:validateRegex>
+				</p:inputText>
+
+
+				<p:outputLabel value="#{msg.lbl_birthdate}" for="birhtday" />
+				<p:calendar id="birhtday" value="#{mbaddstu.student.birthdate}" maxdate="1986/1/1" />
+
+				<p:outputLabel value="#{msg.lbl_sex}" />
+				<p:selectOneRadio value="#{mbaddstu.student.sex}">
+					<f:selectItem itemLabel="male" itemValue="1" />
+					<f:selectItem itemLabel="female" itemValue="2" />
+				</p:selectOneRadio>
+
+				<p:outputLabel value="#{msg.lbl_email} " for="email" />
+				<p:inputText id="email" required="true" requiredMessage="Please enter your email address." validatorMessage="Invalid email format"
+					value="#{mbaddstu.student.email}">
+
+					<f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+				</p:inputText>
+
+
+				<p:outputLabel value="#{msg.lbl_university_ename}" for="univer" />
+				<p:selectOneMenu id="univer" value="#{mbaddstu.student.university.universityId}" required="true"
+					requiredMessage="plase select university name">
+					<f:selectItem itemLabel="#{msg.lbl_select_one}" itemValue=" " />
+					<f:selectItems value="#{mbaddstu.uniTable}" var="unii" itemLabel="#{unii.eName}" itemValue="#{unii.universityId}" />
+
+				</p:selectOneMenu>
+
+				<p:outputLabel value="#{msg.lbl_school_English_name}" for="school" />
+				<p:selectOneMenu id="school" value="#{mbaddstu.student.school.school_Id}" required="true" requiredMessage="plase select school name">
+					<f:selectItem itemLabel="#{msg.lbl_select_one}" itemValue=" " />
+					<f:selectItems value="#{mbaddstu.schoolTable}" var="scho" itemLabel="#{scho.school_ename}" itemValue="#{scho.school_Id}" />
+
+				</p:selectOneMenu>
+
+				<p:outputLabel value="#{msg.lbl_program_english_name}" for="prog" />
+				<p:selectOneMenu id="prog" value="#{mbaddstu.student.program.PROGRAM_ID}" required="true" requiredMessage="plase select program name">
+					<f:selectItem itemLabel="#{msg.lbl_select_one} " itemValue=" " />
+					<f:selectItems value="#{mbaddstu.programTable}" var="prog" itemLabel="#{prog.PROGRAM_ENAME}" itemValue="#{prog.PROGRAM_ID}" />
+
+				</p:selectOneMenu>
+
+
+				<p:outputLabel value="#{msg.lbl_final_average}" />
+				<p:inputNumber value="#{mbaddstu.student.FINAL_AVERAGE}" maxValue="99.9" symbol="%" />
+
+
+				<p:outputLabel value="max Average" for="max" />
+				<p:inputNumber id="max" value="#{mbaddstu.student.MAX_AVERAGE}" maxValue="99.9" />
+
+
+				<p:outputLabel value="#{msg.lbl_rate}" />
+				<p:selectOneMenu value="#{mbaddstu.student.rate}">
+					<f:selectItem itemLabel="#{msg.lbl_select_one}" itemValue="1" />
+					<f:selectItem itemLabel="exelant" itemValue="exelant" />
+					<f:selectItem itemLabel="v.good" itemValue="v.good" />
+					<f:selectItem itemLabel="good" itemValue="good" />
+					<f:selectItem itemLabel="fail" itemValue="fail" />
+				</p:selectOneMenu>
+
+				<p:outputLabel value="#{msg.lbl_graduate_year}" for="year" />
+				<p:inputNumber id="year" value="#{mbaddstu.student.MAX_AVERAGE}" padControl="false" />
+
+
+				<p:outputLabel value="graduate sem" for="sem" />
+				<p:inputNumber id="sem" value="#{mbaddstu.student.MAX_AVERAGE}" padControl="false" />
+
+				<f:facet name="footer">
+
+					<p:commandButton value="#{msg.btn_save}" action="#{mbaddstu.save()}" ajax="false" />
+				</f:facet>
+			</p:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>
